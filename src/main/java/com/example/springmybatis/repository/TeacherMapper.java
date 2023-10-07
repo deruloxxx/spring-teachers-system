@@ -2,7 +2,8 @@ package com.example.springmybatis.repository;
 
 import com.example.springmybatis.model.Teacher;
 import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.session.RowBounds;
+import org.springframework.data.domain.Pageable;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
 public interface TeacherMapper {
   Long count();
 
-  List<Teacher> selectAll(RowBounds rowBounds);
+  List<Teacher> selectAll(@Param("pageable") Pageable pageable);
 
   List<Teacher> selectAll();
 

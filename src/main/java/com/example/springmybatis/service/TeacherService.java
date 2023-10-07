@@ -19,9 +19,7 @@ public class TeacherService {
   private final TeacherMapper mapper;
 
   public Page<Teacher> selectAll(Pageable pageable) {
-    var rowBounds = new RowBounds(
-      (int)pageable.getOffset(), pageable.getPageSize());
-    var teachers = mapper.selectAll(rowBounds);
+    var teachers = mapper.selectAll(pageable);
 
     var total = mapper.count();
     return new PageImpl<>(teachers, pageable, total);

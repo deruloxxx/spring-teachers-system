@@ -10,6 +10,9 @@
   <!-- mapperタグ内に、以下を追加 -->
   <select id="selectAll" resultType="com.example.springmybatis.model.Teacher">
     SELECT * FROM teacher
+    <if test="pageable.paged">
+      LIMIT #{pageable.offset}, #{pageable.pageSize}
+    </if>
   </select>
 
   <select id="selectByPrimaryKey" resultType="com.example.springmybatis.model.Teacher">
