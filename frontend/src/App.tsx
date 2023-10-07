@@ -1,10 +1,21 @@
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [data, setData] = useState<any>(null);
+
+  useEffect(() => {
+    fetch('/api/v1/demo/data')
+      .then(response => response.text())
+      .then(result => {
+        setData(result);
+      });
+  }, []);
+
+  console.log(data)
 
   return (
     <>
