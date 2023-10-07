@@ -2,7 +2,11 @@ package com.example.springmybatis.service;
 
 import com.example.springmybatis.model.Teacher;
 import com.example.springmybatis.repository.TeacherMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +17,15 @@ import java.util.List;
 @Service
 public class TeacherService {
   private final TeacherMapper mapper;
+
+  public Page<Teacher> selectAll(Pageable pageable) {
+    var rowBounds = new RowBounds(
+      (int)pageable.getOffset(), pageable.getPageSize());
+    var teachers = mapper.selectAll(rowBounds);
+
+    var total = mapper.count();
+    return new PageImpl<>(teachers, pageable, total);
+  }
 
   public List<Teacher> selectAll() {
     return mapper.selectAll();
