@@ -8,7 +8,7 @@ function App() {
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    fetch('/api/v1/demo/data')
+    fetch('/api/v1/teachers')
       .then(response => response.text())
       .then(result => {
         setData(result);
