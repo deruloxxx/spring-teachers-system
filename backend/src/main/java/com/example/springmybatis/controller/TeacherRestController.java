@@ -31,7 +31,11 @@ public class TeacherRestController {
 
   @GetMapping("/{id}")
   public ResponseEntity<Teacher> getTeacher(@PathVariable Long id) {
-    return ResponseEntity.ok(service.selectByPrimaryKey(id));
+    Teacher teacher = service.selectByPrimaryKey(id);
+    if (teacher == null) {
+      return ResponseEntity.notFound().build();
+    }
+    return ResponseEntity.ok(teacher);
   }
 
   @PutMapping("/{id}")
@@ -39,6 +43,7 @@ public class TeacherRestController {
     if (service.selectByPrimaryKey(id) == null) {
       return ResponseEntity.notFound().build();
     }
+    teacher.setId(id);
     service.save(teacher);
     return ResponseEntity.ok().build();
   }
