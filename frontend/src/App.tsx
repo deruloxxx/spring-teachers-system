@@ -1,5 +1,15 @@
 import {useEffect, useState} from 'react'
-import {Alert, Pane} from "evergreen-ui";
+import {
+  Button,
+  CaretDownIcon,
+  CogIcon,
+  EditIcon, Heading,
+  ManualIcon,
+  Pagination,
+  SearchIcon,
+  Table, TextInput,
+  TrashIcon
+} from 'evergreen-ui';
 
 function App() {
   const [data, setData] = useState<any>(null);
@@ -16,32 +26,54 @@ function App() {
 
   return (
     <>
-      <Pane>
-        <Alert
-          intent="none"
-          title="There are over 200 integrations available"
-          marginBottom={32}
-        />
-        <Alert
-          intent="success"
-          title="Your source is now sending data"
-          marginBottom={32}
-        />
-        <Alert
-          intent="warning"
-          title="Changes will affect all warehouses"
-          marginBottom={32}
-        >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed dod eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </Alert>
-        <Alert intent="danger"
-               title="We weren’t able to save your changes"
-        >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed dod eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </Alert>
-      </Pane>
+      {/* h1 */}
+      <h1>h1タイトル</h1>
+      {/* h2 */}
+      <Heading size={600}>Left Aligned</Heading>
+      {/* Table */}
+      <Table.Body>
+        <Table.Head>
+          <Table.TextCell flexBasis={560} flexShrink={0} flexGrow={0}>
+            Fixed width
+          </Table.TextCell>
+          <Table.TextCell>Flex me col 2</Table.TextCell>
+          <Table.TextCell>Flex me col 3</Table.TextCell>
+        </Table.Head>
+        <Table.Body>
+          <Table.Row>
+            <Table.TextCell flexBasis={560} flexShrink={0} flexGrow={0}>
+              Fixed width
+            </Table.TextCell>
+            <Table.TextCell>Flex me col 2</Table.TextCell>
+            <Table.TextCell>Flex me col 3</Table.TextCell>
+          </Table.Row>
+        </Table.Body>
+      </Table.Body>
+      {/* Button */}
+      <div>
+        <Button marginY={8} marginRight={12} iconAfter={CogIcon}>
+          Settings
+        </Button>
+        <Button marginY={8} marginRight={12} iconBefore={EditIcon}>
+          Edit
+        </Button>
+        <Button marginY={8} marginRight={12} iconBefore={ManualIcon}>
+          Docs
+        </Button>
+        <Button marginY={8} marginRight={12} iconBefore={TrashIcon} intent="danger">
+          Delete...
+        </Button>
+        <Button marginY={8} marginRight={12} iconBefore={SearchIcon}>
+          Search
+        </Button>
+        <Button marginY={8} marginRight={12} iconAfter={CaretDownIcon}>
+          Filter
+        </Button>
+      </div>
+      {/* Pagination */}
+      <Pagination page={1} totalPages={5}></Pagination>
+      {/* Input Field */}
+      <TextInput name="text-input-name" placeholder="Text input placeholder..." />
     </>
   )
 }
