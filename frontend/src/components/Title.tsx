@@ -1,6 +1,6 @@
 import {Heading} from "evergreen-ui";
 
-export const TeachersHeading = () => {
+export const Title = () => {
   return (
     <Heading size={600}>Left Aligned</Heading>
   );

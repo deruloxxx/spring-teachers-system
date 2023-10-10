@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react'
-import {ButtonList} from "./components/ButtonList.tsx";
-import {TeacherPagination} from "./components/TeacherPagination.tsx";
-import {TeachersTable} from "./components/TeachersTable.tsx";
-import {TeachersHeading} from "./components/TeachersHeading.tsx";
-import {TeacherTextInput} from "./components/TeacherTextInput.tsx";
+import {Route, Routes} from "react-router-dom";
+import {Top} from "./pages/Top.tsx";
+import {Edit} from "./pages/Edit.tsx";
+import {Create} from "./pages/Create.tsx";
+import {NoMatch} from "./pages/NoMatch.tsx";
 
 function App() {
   const [data, setData] = useState<any>(null);
@@ -19,13 +19,12 @@ function App() {
   console.log(data)
 
   return (
-    <>
-      <ButtonList />
-      <TeacherPagination />
-      <TeachersHeading />
-      <TeachersTable />
-      <TeacherTextInput />
-    </>
+    <Routes>
+      <Route index element={<Top />} />
+      <Route path="edit" element={<Edit />} />
+      <Route path="create" element={<Create />} />
+      <Route path="*" element={<NoMatch />} />
+    </Routes>
   )
 }
 
