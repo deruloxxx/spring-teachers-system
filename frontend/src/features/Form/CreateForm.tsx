@@ -3,5 +3,5 @@ export const CreateForm = () => {
     <div>
       <p>Create Form</p>
     </div>
-  );
-};
+  )
+}

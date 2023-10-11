@@ -3,5 +3,5 @@ export const EditForm = () => {
     <div>
       <p>Edit Form</p>
     </div>
-  );
-};
+  )
+}

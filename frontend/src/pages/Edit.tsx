@@ -3,5 +3,5 @@ export const Edit = () => {
     <div>
       <p>Edit</p>
     </div>
-  );
-};
+  )
+}

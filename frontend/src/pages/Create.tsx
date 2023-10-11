@@ -3,5 +3,5 @@ export const Create = () => {
     <div>
       <p>Create</p>
     </div>
-  );
-};
+  )
+}

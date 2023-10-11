@@ -3,5 +3,5 @@ export const Top = () => {
     <div>
       <p>Top</p>
     </div>
-  );
-};
+  )
+}

@@ -1,4 +1,12 @@
-import {Button, CaretDownIcon, CogIcon, EditIcon, ManualIcon, SearchIcon, TrashIcon} from "evergreen-ui";
+import {
+  Button,
+  CaretDownIcon,
+  CogIcon,
+  EditIcon,
+  ManualIcon,
+  SearchIcon,
+  TrashIcon,
+} from 'evergreen-ui'
 
 export const ButtonList = () => {
   return (
@@ -12,7 +20,12 @@ export const ButtonList = () => {
       <Button marginY={8} marginRight={12} iconBefore={ManualIcon}>
         Docs
       </Button>
-      <Button marginY={8} marginRight={12} iconBefore={TrashIcon} intent="danger">
+      <Button
+        marginY={8}
+        marginRight={12}
+        iconBefore={TrashIcon}
+        intent="danger"
+      >
         Delete...
       </Button>
       <Button marginY={8} marginRight={12} iconBefore={SearchIcon}>
@@ -22,5 +35,5 @@ export const ButtonList = () => {
         Filter
       </Button>
     </div>
-  );
-};
+  )
+}
