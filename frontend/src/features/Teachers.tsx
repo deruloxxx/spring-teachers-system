@@ -7,9 +7,16 @@ import {
   TrashIcon,
 } from 'evergreen-ui'
 import { PaginationNavi } from '../components/PaginationNavi.tsx'
+import { useNavigate } from 'react-router-dom'
 
 // TODO Fetch data from API
+// TODO SP design
 export const Teachers = () => {
+  const navigate = useNavigate()
+
+  const onClickNavEdit = () => {
+    navigate('/edit')
+  }
   return (
     <Pane>
       <Table.Body>
@@ -29,9 +36,15 @@ export const Teachers = () => {
               alignItems={'center'}
               textAlign={'right'}
             >
-              <Button marginY={8} marginRight={12} iconBefore={EditIcon}>
+              <Button
+                marginY={8}
+                marginRight={12}
+                iconBefore={EditIcon}
+                onClick={onClickNavEdit}
+              >
                 Edit
               </Button>
+              {/* POSTする */}
               <Button
                 marginY={8}
                 marginRight={12}
