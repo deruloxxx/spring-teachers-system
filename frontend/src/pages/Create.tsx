@@ -1,7 +1,11 @@
+import { EditForm } from '../features/Form/EditForm.tsx'
+import { Wrapper } from '../components/Wrapper.tsx'
+
 export const Create = () => {
   return (
-    <div>
-      <p>Create</p>
-    </div>
+    <Wrapper>
+      <h1>Create Form</h1>
+      <EditForm />
+    </Wrapper>
   )
 }

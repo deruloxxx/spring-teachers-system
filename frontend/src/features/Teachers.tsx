@@ -17,6 +17,10 @@ export const Teachers = () => {
   const onClickNavEdit = () => {
     navigate('/edit')
   }
+
+  const onClickNavCreate = () => {
+    navigate('/create')
+  }
   return (
     <Pane>
       <Table.Body>
@@ -62,7 +66,12 @@ export const Teachers = () => {
         justifyContent={'space-between'}
         alignItems={'center'}
       >
-        <Button marginY={8} marginRight={12} iconAfter={PlusIcon}>
+        <Button
+          marginY={8}
+          marginRight={12}
+          iconAfter={PlusIcon}
+          onClick={onClickNavCreate}
+        >
           New Teacher
         </Button>
         <PaginationNavi />
