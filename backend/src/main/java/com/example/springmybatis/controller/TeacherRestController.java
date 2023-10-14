@@ -10,6 +10,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+// TODO Separate URLs to be fetched for production and development
+@CrossOrigin(origins = "http://localhost:5173")
 @Tag(name = "Teacher", description = "Teacher management APIs")
 @RequiredArgsConstructor
 @RestController
