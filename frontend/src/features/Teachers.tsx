@@ -13,7 +13,6 @@ import { Loader } from '../components/Loader.tsx'
 
 export const Teachers = () => {
   const { loading, data } = useTeachersInfo()
-  console.log(data)
   const navigate = useNavigate()
 
   const onClickNavEdit = () => {
@@ -38,9 +37,7 @@ export const Teachers = () => {
             </Table.Head>
             <Table.Body>
               {data &&
-                // TODO Define the data type
-                // @ts-ignore
-                data.content.map((item) => (
+                data.map((item) => (
                   <Table.Row key={item.id}>
                     <Table.TextCell>{item.id}</Table.TextCell>
                     <Table.TextCell>{item.userName}</Table.TextCell>
