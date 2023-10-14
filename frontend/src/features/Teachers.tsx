@@ -10,9 +10,18 @@ import { PaginationNavi } from '../components/PaginationNavi.tsx'
 import { useNavigate } from 'react-router-dom'
 import useTeachersInfo from '../hooks/useTeachersInfo.ts'
 import { Loader } from '../components/Loader.tsx'
+import { deleteTeacherById } from '../utils/deleteTeacherById.ts'
 
 export const Teachers = () => {
-  const { loading, data } = useTeachersInfo()
+  const { loading, data, setData } = useTeachersInfo()
+  const handleDelete = async (id: number) => {
+    const success = await deleteTeacherById(id)
+    if (success && data) {
+      const updatedData = data.filter((teacher) => teacher.id !== id)
+      setData(updatedData)
+    }
+  }
+
   const navigate = useNavigate()
 
   const onClickNavEdit = () => {
@@ -22,6 +31,7 @@ export const Teachers = () => {
   const onClickNavCreate = () => {
     navigate('/create')
   }
+
   return (
     <Pane>
       {loading ? (
@@ -51,12 +61,12 @@ export const Teachers = () => {
                       >
                         Edit
                       </Button>
-                      {/* POSTする */}
                       <Button
                         marginY={8}
                         marginRight={12}
                         iconBefore={TrashIcon}
                         intent="danger"
+                        onClick={() => handleDelete(item.id)}
                       >
                         Delete
                       </Button>

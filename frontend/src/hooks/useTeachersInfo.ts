@@ -21,7 +21,7 @@ const useTeachersInfo = () => {
     })()
   }, [])
 
-  return { loading, data }
+  return { loading, data, setData }
 }
 
 export default useTeachersInfo
