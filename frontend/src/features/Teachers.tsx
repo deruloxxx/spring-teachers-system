@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import useTeachersInfo from '../hooks/useTeachersInfo.ts'
 import { Loader } from '../components/Loader.tsx'
 import { deleteTeacherById } from '../utils/deleteTeacherById.ts'
+import { UserEditData } from '../schema/userCreateSchema.ts'
 
 export const Teachers = () => {
   const { loading, data, setData } = useTeachersInfo()
@@ -24,8 +25,8 @@ export const Teachers = () => {
 
   const navigate = useNavigate()
 
-  const onClickNavEdit = () => {
-    navigate('/edit')
+  const onClickNavEdit = (itemData: UserEditData) => {
+    navigate('/edit', { state: { item: itemData } })
   }
 
   const onClickNavCreate = () => {
@@ -57,7 +58,7 @@ export const Teachers = () => {
                         marginY={8}
                         marginRight={12}
                         iconBefore={EditIcon}
-                        onClick={onClickNavEdit}
+                        onClick={() => onClickNavEdit(item)}
                       >
                         Edit
                       </Button>

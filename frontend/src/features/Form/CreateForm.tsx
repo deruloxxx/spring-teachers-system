@@ -1,7 +1,7 @@
 import { Button, PlusIcon, TextInputField } from 'evergreen-ui'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { UserData, userSchema } from '../../schema/userSchema.ts'
+import { UserData, userCreateSchema } from '../../schema/userCreateSchema.ts'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 export const CreateForm = () => {
@@ -12,7 +12,7 @@ export const CreateForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<UserData>({
-    resolver: zodResolver(userSchema),
+    resolver: zodResolver(userCreateSchema),
   })
 
   const postTeacherData = async (data: UserData) => {
