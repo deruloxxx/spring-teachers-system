@@ -28,7 +28,7 @@ public class TeacherRestController {
   @PostMapping
   public ResponseEntity<?> createTeacher(@Valid @RequestBody Teacher teacher) {
     service.save(teacher);
-    return ResponseEntity.ok().build();
+    return ResponseEntity.ok("{\"message\":\"Success\"}");
   }
 
   @GetMapping("/{id}")
