@@ -7,30 +7,20 @@ import {
   TrashIcon,
 } from 'evergreen-ui'
 import { PaginationNavi } from '../components/PaginationNavi.tsx'
-import { useNavigate } from 'react-router-dom'
 import useTeachersInfo from '../hooks/useTeachersInfo.ts'
 import { Loader } from '../components/Loader.tsx'
 import { deleteTeacherById } from '../utils/deleteTeacherById.ts'
-import { UserEditData } from '../schema/userCreateSchema.ts'
+import { useCustomNav } from '../hooks/useCustomNav.ts'
 
 export const Teachers = () => {
   const { loading, data, setData } = useTeachersInfo()
+  const { navEdit, navCreate } = useCustomNav()
   const handleDelete = async (id: number) => {
     const success = await deleteTeacherById(id)
     if (success && data) {
       const updatedData = data.filter((teacher) => teacher.id !== id)
       setData(updatedData)
     }
-  }
-
-  const navigate = useNavigate()
-
-  const onClickNavEdit = (itemData: UserEditData) => {
-    navigate('/edit', { state: { item: itemData } })
-  }
-
-  const onClickNavCreate = () => {
-    navigate('/create')
   }
 
   return (
@@ -58,7 +48,7 @@ export const Teachers = () => {
                         marginY={8}
                         marginRight={12}
                         iconBefore={EditIcon}
-                        onClick={() => onClickNavEdit(item)}
+                        onClick={() => navEdit(item)}
                       >
                         Edit
                       </Button>
@@ -85,7 +75,7 @@ export const Teachers = () => {
               marginY={8}
               marginRight={12}
               iconAfter={PlusIcon}
-              onClick={onClickNavCreate}
+              onClick={navCreate}
             >
               New Teacher
             </Button>

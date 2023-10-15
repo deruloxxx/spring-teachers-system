@@ -9,11 +9,7 @@ export const Edit = () => {
   return (
     <Wrapper>
       <h1>Edit Form</h1>
-      <EditForm
-        email={item?.email}
-        userName={item?.userName}
-        userId={item?.id}
-      />
+      <EditForm email={item?.email} userName={item?.userName} id={item?.id} />
     </Wrapper>
   )
 }

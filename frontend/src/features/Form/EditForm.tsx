@@ -1,36 +1,37 @@
 import { Button, PlusIcon, TextInputField } from 'evergreen-ui'
-import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { UserEditData, userEditSchema } from '../../schema/userCreateSchema.ts'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FC } from 'react'
+import { TeacherInfo } from '../../types/TeachersInfo.ts'
+import { teacherSchema } from '../../schema/teacherCreateSchema.ts'
+import { useCustomNav } from '../../hooks/useCustomNav.ts'
 
 type EditFormProps = {
-  userId: number
+  id: number
   userName: string
   email: string
 }
 
-export const EditForm: FC<EditFormProps> = ({ userName, email, userId }) => {
-  const navigate = useNavigate()
+export const EditForm: FC<EditFormProps> = ({ userName, email, id }) => {
+  const { navTop } = useCustomNav()
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<UserEditData>({
-    resolver: zodResolver(userEditSchema),
+  } = useForm<TeacherInfo>({
+    resolver: zodResolver(teacherSchema),
     defaultValues: {
-      userId: userId,
+      id: id,
       userName: userName,
       email: email,
     },
   })
 
-  const putTeacherData = async (data: UserEditData) => {
+  const putTeacherData = async (data: TeacherInfo) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/v1/teachers/${data.userId}`,
+        `http://localhost:8080/api/v1/teachers/${data.id}`,
         {
           method: 'PUT',
           headers: {
@@ -54,10 +55,10 @@ export const EditForm: FC<EditFormProps> = ({ userName, email, userId }) => {
     }
   }
 
-  const onSubmit = async (data: UserEditData) => {
+  const onSubmit = async (data: TeacherInfo) => {
     try {
       await putTeacherData(data)
-      navigate('/')
+      navTop()
     } catch (error) {
       console.error('There was an error:', error)
     }
@@ -65,12 +66,7 @@ export const EditForm: FC<EditFormProps> = ({ userName, email, userId }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input
-        id="userId"
-        type={'hidden'}
-        {...register('userId')}
-        value={userId}
-      />
+      <input id="userId" type={'hidden'} {...register('id')} value={id} />
       <TextInputField
         id="userName"
         label="Username"

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { TeachersInfoType } from '../types/TeachersInfo.ts'
+import { TeacherInfo } from '../types/TeachersInfo.ts'
 
 const useTeachersInfo = () => {
   const [loading, setLoading] = useState(true)
-  const [data, setData] = useState<TeachersInfoType | null>(null)
+  const [data, setData] = useState<Array<TeacherInfo> | null>(null)
 
   useEffect(() => {
     ;(async () => {

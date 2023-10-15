@@ -1,21 +1,22 @@
 import { Button, PlusIcon, TextInputField } from 'evergreen-ui'
-import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { UserData, userCreateSchema } from '../../schema/userCreateSchema.ts'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { TeacherCreateData } from '../../types/TeachersInfo.ts'
+import { teacherCreateSchema } from '../../schema/teacherCreateSchema.ts'
+import { useCustomNav } from '../../hooks/useCustomNav.ts'
 
 export const CreateForm = () => {
-  const navigate = useNavigate()
+  const { navTop } = useCustomNav()
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<UserData>({
-    resolver: zodResolver(userCreateSchema),
+  } = useForm<TeacherCreateData>({
+    resolver: zodResolver(teacherCreateSchema),
   })
 
-  const postTeacherData = async (data: UserData) => {
+  const postTeacherData = async (data: TeacherCreateData) => {
     try {
       const response = await fetch('http://localhost:8080/api/v1/teachers', {
         method: 'POST',
@@ -39,10 +40,10 @@ export const CreateForm = () => {
     }
   }
 
-  const onSubmit = async (data: UserData) => {
+  const onSubmit = async (data: TeacherCreateData) => {
     try {
       await postTeacherData(data)
-      navigate('/')
+      navTop()
     } catch (error) {
       console.error('There was an error:', error)
     }

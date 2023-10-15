@@ -1,5 +1,6 @@
 export const deleteTeacherById = async (id: number) => {
   try {
+    // TODO Importing URLs to be fetched
     const response = await fetch(
       `http://localhost:8080/api/v1/teachers/${id}`,
       {
