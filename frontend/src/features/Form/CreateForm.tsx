@@ -73,7 +73,10 @@ export const CreateForm = () => {
         placeholder="Email"
       />
       <Button marginY={8} marginRight={12} iconAfter={PlusIcon} type={'submit'}>
-        Save
+        Create
+      </Button>
+      <Button marginY={8} marginRight={12} onClick={navTop}>
+        Back top Top
       </Button>
     </form>
   )

@@ -1,4 +1,4 @@
-import { Button, PlusIcon, TextInputField } from 'evergreen-ui'
+import { Button, TextInputField, TickIcon } from 'evergreen-ui'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FC } from 'react'
@@ -88,8 +88,11 @@ export const EditForm: FC<EditFormProps> = ({ userName, email, id }) => {
         validationMessage={errors.email?.message && `${errors.email?.message}`}
         placeholder="Email"
       />
-      <Button marginY={8} marginRight={12} iconAfter={PlusIcon} type={'submit'}>
+      <Button marginY={8} marginRight={12} iconAfter={TickIcon} type={'submit'}>
         Save
+      </Button>
+      <Button marginY={8} marginRight={12} onClick={navTop}>
+        Back top Top
       </Button>
     </form>
   )
