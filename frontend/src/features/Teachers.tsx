@@ -24,9 +24,6 @@ export const Teachers = () => {
     }
   }
 
-  console.log(page)
-  console.log(totalPages)
-
   return (
     <Pane>
       {loading ? (
