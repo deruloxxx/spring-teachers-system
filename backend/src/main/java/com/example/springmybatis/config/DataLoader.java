@@ -17,7 +17,7 @@ public class DataLoader implements ApplicationRunner {
 
   @Override
   public void run(ApplicationArguments args) throws Exception {
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 50; i++) {
       var teacher = new Teacher();
       teacher.setUserName("テスト");
       teacher.setEmail("test@example.com");

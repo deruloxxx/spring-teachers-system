@@ -1,19 +1,20 @@
 import {
   Button,
   EditIcon,
+  Pagination,
   Pane,
   PlusIcon,
   Table,
   TrashIcon,
 } from 'evergreen-ui'
-import { PaginationNavi } from '../components/PaginationNavi.tsx'
 import useTeachersInfo from '../hooks/useTeachersInfo.ts'
 import { Loader } from '../components/Loader.tsx'
 import { deleteTeacherById } from '../utils/deleteTeacherById.ts'
 import { useCustomNav } from '../hooks/useCustomNav.ts'
 
 export const Teachers = () => {
-  const { loading, data, setData } = useTeachersInfo()
+  const { loading, data, setData, setPage, page, totalPages } =
+    useTeachersInfo()
   const { navEdit, navCreate } = useCustomNav()
   const handleDelete = async (id: number) => {
     const success = await deleteTeacherById(id)
@@ -22,6 +23,9 @@ export const Teachers = () => {
       setData(updatedData)
     }
   }
+
+  console.log(page)
+  console.log(totalPages)
 
   return (
     <Pane>
@@ -79,7 +83,13 @@ export const Teachers = () => {
             >
               New Teacher
             </Button>
-            <PaginationNavi />
+            <Pagination
+              page={page + 1}
+              totalPages={totalPages}
+              onPreviousPage={() => setPage((prevPage) => prevPage - 1)}
+              onNextPage={() => setPage((prevPage) => prevPage + 1)}
+              onPageChange={setPage}
+            ></Pagination>
           </Pane>
         </>
       )}
