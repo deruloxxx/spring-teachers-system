@@ -11,24 +11,32 @@ const useTeachersInfo = () => {
   const [page, setPage] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
 
+  const fetchTeachers = async () => {
+    try {
+      const res = await axios(`${API_URL}?page=${page}`)
+      const result = res.data
+      setData(result.content)
+      setTotalPages(result.totalPages)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
-    ;(async () => {
-      try {
-        // TODO Separate URLs to be fetched for production and development
-        const res = await axios(`${API_URL}?page=${page}`)
-        const result = await res.data
-        setData(result.content)
-        setTotalPages(result.totalPages)
-      } catch (error) {
-        // TODO Create error handling
-        console.log(error)
-      } finally {
-        setLoading(false)
-      }
-    })()
+    fetchTeachers()
   }, [page])
 
-  return { loading, data, setData, page, setPage, totalPages, setTotalPages }
+  return {
+    loading,
+    data,
+    page,
+    setPage,
+    totalPages,
+    setTotalPages,
+    fetchTeachers,
+  }
 }
 
 export default useTeachersInfo

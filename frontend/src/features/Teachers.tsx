@@ -13,14 +13,15 @@ import { deleteTeacherById } from '../utils/deleteTeacherById.ts'
 import { useCustomNav } from '../hooks/useCustomNav.ts'
 
 export const Teachers = () => {
-  const { loading, data, setData, setPage, page, totalPages } =
+  const { loading, data, setPage, page, totalPages, fetchTeachers } =
     useTeachersInfo()
+
   const { navEdit, navCreate } = useCustomNav()
+
   const handleDelete = async (id: number) => {
     const success = await deleteTeacherById(id)
-    if (success && data) {
-      const updatedData = data.filter((teacher) => teacher.id !== id)
-      setData(updatedData)
+    if (success) {
+      await fetchTeachers()
     }
   }
 
