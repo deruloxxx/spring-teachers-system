@@ -4,12 +4,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { TeacherCreateData } from '../../types/TeachersInfo.ts'
 import { teacherCreateSchema } from '../../schema/teacherCreateSchema.ts'
 import { useCustomNav } from '../../hooks/useCustomNav.ts'
-import { useState } from 'react'
+import { useUpdateTeacher } from '../../hooks/useUpdateTeacher.ts'
 import { ErrorAlert } from '../../components/ErrorAlert.tsx'
 
 export const CreateForm = () => {
-  const [hasError, setHasError] = useState(false)
   const { navTop } = useCustomNav()
+  const { hasError, sendRequest } = useUpdateTeacher()
 
   const {
     register,
@@ -19,33 +19,12 @@ export const CreateForm = () => {
     resolver: zodResolver(teacherCreateSchema),
   })
 
-  const postTeacherData = async (data: TeacherCreateData) => {
-    try {
-      const response = await fetch('http://localhost:8080/api/v1/teachers', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-
-      if (!response.ok) {
-        throw new Error('Failed to post data')
-      }
-
-      const text = await response.text()
-      if (text) {
-        return JSON.parse(text)
-      }
-    } catch (error) {
-      console.error('There was an error:', error)
-      setHasError(true)
-    }
-  }
-
   const onSubmit = async (data: TeacherCreateData) => {
     try {
-      await postTeacherData(data)
+      await sendRequest({
+        method: 'POST',
+        data: data,
+      })
       navTop()
     } catch (error) {
       console.error('There was an error:', error)

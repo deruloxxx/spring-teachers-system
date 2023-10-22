@@ -14,7 +14,7 @@ const useTeachersInfo = () => {
     ;(async () => {
       try {
         // TODO Separate URLs to be fetched for production and development
-        const res = await fetch(`${API_URL}/api/v1/teachers?page=${page}`)
+        const res = await fetch(`${API_URL}?page=${page}`)
         const result = await res.json()
         setData(result.content)
         setTotalPages(result.totalPages)

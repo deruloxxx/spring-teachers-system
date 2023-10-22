@@ -1,11 +1,12 @@
 import { Button, TextInputField, TickIcon } from 'evergreen-ui'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { TeacherInfo } from '../../types/TeachersInfo.ts'
 import { teacherSchema } from '../../schema/teacherCreateSchema.ts'
 import { useCustomNav } from '../../hooks/useCustomNav.ts'
 import { ErrorAlert } from '../../components/ErrorAlert.tsx'
+import { useUpdateTeacher } from '../../hooks/useUpdateTeacher.ts'
 
 type EditFormProps = {
   id: number
@@ -14,8 +15,8 @@ type EditFormProps = {
 }
 
 export const EditForm: FC<EditFormProps> = ({ userName, email, id }) => {
-  const [hasError, setHasError] = useState(false)
   const { navTop } = useCustomNav()
+  const { hasError, sendRequest } = useUpdateTeacher()
 
   const {
     register,
@@ -30,37 +31,13 @@ export const EditForm: FC<EditFormProps> = ({ userName, email, id }) => {
     },
   })
 
-  const putTeacherData = async (data: TeacherInfo) => {
-    try {
-      const response = await fetch(
-        `http://localhost:8080/api/v1/teachers/${data.id}`,
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        },
-      )
-
-      if (!response.ok) {
-        throw new Error('Failed to post data')
-      }
-
-      const text = await response.text()
-      if (text) {
-        return JSON.parse(text)
-      }
-      return null
-    } catch (error) {
-      console.error('There was an error:', error)
-      setHasError(true)
-    }
-  }
-
   const onSubmit = async (data: TeacherInfo) => {
     try {
-      await putTeacherData(data)
+      await sendRequest({
+        apiPath: `${data.id}`,
+        method: 'PUT',
+        data: data,
+      })
       navTop()
     } catch (error) {
       console.error('There was an error:', error)
