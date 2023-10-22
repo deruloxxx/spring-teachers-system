@@ -1,11 +1,11 @@
 import { Teachers } from '../features/Teachers.tsx'
 import { Wrapper } from '../components/Wrapper.tsx'
+import { Title } from '../components/Title.tsx'
 
 export const Top = () => {
   return (
     <Wrapper>
-      {/* TODO create h1 component */}
-      <h1>Teachers Management System</h1>
+      <Title />
       <Teachers />
     </Wrapper>
   )

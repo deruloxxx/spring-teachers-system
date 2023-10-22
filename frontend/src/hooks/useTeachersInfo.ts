@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { TeacherInfo } from '../types/TeachersInfo.ts'
+import axios from 'axios'
 
 // TODO Consider where arrange API URL
 const API_URL = import.meta.env.VITE_API_URL
@@ -14,8 +15,8 @@ const useTeachersInfo = () => {
     ;(async () => {
       try {
         // TODO Separate URLs to be fetched for production and development
-        const res = await fetch(`${API_URL}?page=${page}`)
-        const result = await res.json()
+        const res = await axios(`${API_URL}?page=${page}`)
+        const result = await res.data
         setData(result.content)
         setTotalPages(result.totalPages)
       } catch (error) {

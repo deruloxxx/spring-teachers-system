@@ -1,6 +1,7 @@
 import { Wrapper } from '../components/Wrapper.tsx'
 import { Alert, Button, EditIcon, Pane } from 'evergreen-ui'
 import { useNavigate } from 'react-router-dom'
+import { Title } from '../components/Title.tsx'
 
 export const NotFound = () => {
   const navigate = useNavigate()
@@ -10,6 +11,7 @@ export const NotFound = () => {
 
   return (
     <Wrapper>
+      <Title />
       <Pane
         position={'absolute'}
         top={'50%'}

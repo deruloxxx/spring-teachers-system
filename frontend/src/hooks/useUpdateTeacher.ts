@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { TeacherCreateData, TeacherInfo } from '../types/TeachersInfo.ts'
+import axios from 'axios'
 const API_URL = import.meta.env.VITE_API_URL
 
 type sendRequest = {
@@ -14,23 +15,14 @@ export const useUpdateTeacher = () => {
   const sendRequest = async ({ apiPath, method, data }: sendRequest) => {
     const url = apiPath ? `${API_URL}/${apiPath}` : API_URL
     try {
-      const response = await fetch(url, {
+      await axios({
+        url: `${url}`,
         method: method,
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        data: data,
       })
-
-      if (!response.ok) {
-        throw new Error('Failed to post data')
-      }
-
-      const text = await response.text()
-      if (text) {
-        return JSON.parse(text)
-      }
-      return null
     } catch (error) {
       console.error('There was an error:', error)
       setHasError(true)
