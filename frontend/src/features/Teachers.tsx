@@ -79,7 +79,7 @@ export const Teachers = () => {
             totalPages={totalPages}
             onPreviousPage={() => setPage((prevPage) => prevPage - 1)}
             onNextPage={() => setPage((prevPage) => prevPage + 1)}
-            onPageChange={setPage}
+            onPageChange={(value) => setPage(value - 1)}
           />
         </>
       )}
