@@ -10,6 +10,7 @@ const useTeachersInfo = () => {
   const [data, setData] = useState<Array<TeacherInfo> | null>(null)
   const [page, setPage] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
+  const [hasError, setHasError] = useState(false)
 
   const fetchTeachers = async () => {
     try {
@@ -19,6 +20,7 @@ const useTeachersInfo = () => {
       setTotalPages(result.totalPages)
     } catch (error) {
       console.error(error)
+      setHasError(true)
     } finally {
       setLoading(false)
     }
@@ -36,6 +38,7 @@ const useTeachersInfo = () => {
     totalPages,
     setTotalPages,
     fetchTeachers,
+    hasError,
   }
 }
 

@@ -11,9 +11,10 @@ import useTeachersInfo from '../hooks/useTeachersInfo.ts'
 import { Loader } from '../components/Loader.tsx'
 import { deleteTeacherById } from '../utils/deleteTeacherById.ts'
 import { useCustomNav } from '../hooks/useCustomNav.ts'
+import { ErrorAlert } from '../components/ErrorAlert.tsx'
 
 export const Teachers = () => {
-  const { loading, data, setPage, page, totalPages, fetchTeachers } =
+  const { loading, data, setPage, page, totalPages, fetchTeachers, hasError } =
     useTeachersInfo()
 
   const { navEdit, navCreate } = useCustomNav()
@@ -29,6 +30,8 @@ export const Teachers = () => {
     <Pane>
       {loading ? (
         <Loader />
+      ) : hasError ? (
+        <ErrorAlert />
       ) : (
         <>
           <Button marginBottom={16} iconAfter={PlusIcon} onClick={navCreate}>
