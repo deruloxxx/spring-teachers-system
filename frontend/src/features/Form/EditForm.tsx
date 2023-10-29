@@ -6,7 +6,7 @@ import { TeacherInfo } from '../../types/TeachersInfo.ts'
 import { teacherSchema } from '../../schema/teacherCreateSchema.ts'
 import { useCustomNav } from '../../hooks/useCustomNav.ts'
 import { ErrorAlert } from '../../components/ErrorAlert.tsx'
-import { useUpdateTeacher } from '../../hooks/useUpdateTeacher.ts'
+import { useTeacherRequestAPI } from '../../hooks/useTeacherRequestAPI.ts'
 
 type EditFormProps = {
   id: number
@@ -16,7 +16,7 @@ type EditFormProps = {
 
 export const EditForm: FC<EditFormProps> = ({ userName, email, id }) => {
   const { navTop } = useCustomNav()
-  const { hasError, sendRequest } = useUpdateTeacher()
+  const { hasError, sendRequest } = useTeacherRequestAPI()
 
   const {
     register,

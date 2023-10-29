@@ -9,7 +9,7 @@ type sendRequest = {
   data: TeacherCreateData | TeacherInfo
 }
 
-export const useUpdateTeacher = () => {
+export const useTeacherRequestAPI = () => {
   const [hasError, setHasError] = useState(false)
 
   const sendRequest = async ({ apiPath, method, data }: sendRequest) => {

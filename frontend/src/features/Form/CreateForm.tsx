@@ -4,12 +4,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { TeacherCreateData } from '../../types/TeachersInfo.ts'
 import { teacherCreateSchema } from '../../schema/teacherCreateSchema.ts'
 import { useCustomNav } from '../../hooks/useCustomNav.ts'
-import { useUpdateTeacher } from '../../hooks/useUpdateTeacher.ts'
+import { useTeacherRequestAPI } from '../../hooks/useTeacherRequestAPI.ts'
 import { ErrorAlert } from '../../components/ErrorAlert.tsx'
 
 export const CreateForm = () => {
   const { navTop } = useCustomNav()
-  const { hasError, sendRequest } = useUpdateTeacher()
+  const { hasError, sendRequest } = useTeacherRequestAPI()
 
   const {
     register,
