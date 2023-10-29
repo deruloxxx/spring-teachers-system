@@ -1,2 +1,2 @@
 INSERT INTO teacher(user_name, email)
-VALUES ('中池', 'nakaike@example.com');
+VALUES ('uetake', 'uetake@example.com');

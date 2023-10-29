@@ -19,7 +19,7 @@ public class DataLoader implements ApplicationRunner {
   public void run(ApplicationArguments args) throws Exception {
     for (int i = 0; i < 50; i++) {
       var teacher = new Teacher();
-      teacher.setUserName("テスト");
+      teacher.setUserName("test");
       teacher.setEmail("test@example.com");
       service.save(teacher);
     }
