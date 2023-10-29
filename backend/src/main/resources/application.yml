@@ -15,3 +15,6 @@ cors:
   allowedOrigins:
     - "http://localhost:5173"
     - "https://spring-teachers-system.vercel.app"
+
+server:
+  port: 5000
