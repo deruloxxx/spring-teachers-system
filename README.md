@@ -1,9 +1,16 @@
-# spring-mybatis
+# Spring Teachers System
+[System with CRUD operation for Teacher](https://spring-teachers-system.vercel.app)
+![img.png](img.png)
 
-[Spring Boot 2 応用: REST x Swagger UI、MyBatisからAWSへのデプロイまで](https://www.amazon.co.jp/gp/product/B08RL67N9S/ref=ppx_yo_dt_b_d_asin_title_o01?ie=UTF8&psc=1)の写経
+### Back End API Doc
+https://ryu-uetake.com/swagger-ui/index.html
 
-## Start
-起動したら以下URLにアクセス
-http://localhost:8080/
+## Getting Started
+### Back End
+1. ``cd backend``
+2. ``Start Spring Boot Application``
 
-- MyBatisに関しての写経
+### Frontend
+1. ``cd frontend``
+2. ``yarn install``
+3. ``yarn dev``

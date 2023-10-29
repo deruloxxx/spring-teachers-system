@@ -2,12 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.springmybatis.repository.TeacherMapper">
 
-  <!-- COUNTを追加 -->
   <select id="count" resultType="Long">
     SELECT COUNT(*) FROM teacher
   </select>
 
-  <!-- mapperタグ内に、以下を追加 -->
   <select id="selectAll" resultType="com.example.springmybatis.model.Teacher">
     SELECT * FROM teacher
     <if test="pageable.paged">
