@@ -3,9 +3,6 @@
 
 ![img.png](img.png)
 
-### Back End API Doc
-https://ryu-uetake.com/swagger-ui/index.html
-
 ## Getting Started
 ### Back End
 1. ``cd backend``
